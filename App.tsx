@@ -1,5 +1,6 @@
 import * as React from "react";
 import { TransitTimes } from "./TransitTimes";
+import { getBusTimes } from "./TfNsw";
 
 enum WeatherStatus {
   Unknown = "unknown",
@@ -20,7 +21,6 @@ const App = () => {
   });
 
   React.useEffect(() => {
-    console.log(process.env.TFNSW_API_KEY);
     setTimeout(() => {
       setState({
         ...state,

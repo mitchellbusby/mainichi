@@ -5,14 +5,19 @@
   "author": "Mitchell Busby <mitchbusby@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^12.11.7",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
+    "express": "^4.17.1",
+    "gtfs-realtime-bindings": "^0.0.5",
+    "isomorphic-fetch": "^2.2.1",
     "parcel-bundler": "^1.12.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   },
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "node server.js",
+    "build": "parcel build index.html"
   },
   "devDependencies": {
     "sass": "^1.23.1",
