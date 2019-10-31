@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TransitTimes } from "./TransitTimes";
-import { getBusTimes } from "./TfNsw";
+import { getBusTimes, IDeparture } from "./TfNswApi";
 
 enum WeatherStatus {
   Unknown = "unknown",
@@ -11,7 +11,8 @@ enum WeatherStatus {
 
 interface IAppState {
   isLoading: boolean;
-  weatherStatus: WeatherStatus
+  weatherStatus: WeatherStatus;
+  departures?: IDeparture[];
 }
 
 const App = () => {
@@ -21,13 +22,16 @@ const App = () => {
   });
 
   React.useEffect(() => {
-    setTimeout(() => {
+    async function fetchBusTimesAndWeather() {
+      const result = await getBusTimes();
       setState({
         ...state,
         isLoading: false,
         weatherStatus: WeatherStatus.Sunny,
-      })
-    }, 1000);
+        departures: result,
+      });
+    }
+    fetchBusTimesAndWeather();
   }, []);
 
   return (
@@ -48,11 +52,7 @@ const App = () => {
             <div className="buses">
               <TransitTimes
                 stopName="Catherine Street @ Moore St"
-                services={[{
-                  actualDeparture: "8 min",
-                  scheduledDeparture: "10 min",
-                  scheduledArrival: "8:48am"
-                }]}
+                services={state.departures}
               />
             </div>
           </React.Fragment>

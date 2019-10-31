@@ -1,26 +1,20 @@
 import * as React from "react";
-
-interface ITransitService {
-  actualDeparture?: string;
-  scheduledDeparture: string;
-  actualArrival?: string;
-  scheduledArrival?: string;
-}
+import { IDeparture } from "./TfNswApi";
+import {take} from "lodash";
 
 
 interface ITransitTimeProps {
   stopName: string;
-  services: ITransitService[];
+  services: IDeparture[];
 }
 
 const TransitTimes = ({stopName, services}: ITransitTimeProps) => (
   <div className="c-transit-times">
-    Hey, here's your transit times...
-    <div className="c-transit-times__stop-name h4">{stopName}</div>
+    <div className="c-transit-times__stop-name h3 bold mb2">{stopName}</div>
     <div className="c-transit-times__services">
-      {services.map((service) => (
-        <div>
-          {service.scheduledDeparture} | {service.scheduledArrival}
+      {take(services, 3).map((service) => (
+        <div className="mb1">
+          {service.departureInMinutes} minutes
         </div>
       ))}
     </div>
