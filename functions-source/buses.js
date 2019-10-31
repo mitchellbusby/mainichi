@@ -6,4 +6,4 @@ const busesHandler = (event, context, callback) => {
   });
 }
 
-export {busesHandler}
+export {busesHandler as handler}
