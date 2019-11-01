@@ -1,34 +1,33 @@
 import * as React from "react";
 import { TransitTimes } from "./TransitTimes";
 import { getBusTimes, IDeparture } from "./TfNswApi";
-
-enum WeatherStatus {
-  Unknown = "unknown",
-  Sunny = "sunny",
-  WillRain = "willrain"
-}
-
+import { getWeatherForecast, IApiForecast } from "./WeatherApi";
+import { Forecast } from "./Forecast";
 
 interface IAppState {
   isLoading: boolean;
-  weatherStatus: WeatherStatus;
   departures?: IDeparture[];
+  weatherForecast?: IApiForecast[];
 }
 
 const App = () => {
   const [state, setState] = React.useState<IAppState>({
     isLoading: true,
-    weatherStatus: WeatherStatus.Unknown,
   });
 
   React.useEffect(() => {
     async function fetchBusTimesAndWeather() {
-      const result = await getBusTimes();
+
+      const [buses, weatherForecast] = await Promise.all([
+        getBusTimes(),
+        getWeatherForecast(),
+      ]);
+
       setState({
         ...state,
         isLoading: false,
-        weatherStatus: WeatherStatus.Sunny,
-        departures: result,
+        departures: buses,
+        weatherForecast: weatherForecast.data,
       });
     }
     fetchBusTimesAndWeather();
@@ -45,9 +44,9 @@ const App = () => {
         ) : (
           <React.Fragment>
             <div className="weather mb2">
-              <div className="h2">
-                The weather will be {state.weatherStatus === WeatherStatus.Sunny ? "fine. You're sweet 👌" : "rainy. Better bring an umbrella ☔"}
-              </div>
+            <Forecast
+              forecast={state.weatherForecast}
+            />
             </div>
             <div className="buses">
               <TransitTimes
