@@ -2,7 +2,10 @@ const buses = require('../server/TfNsw');
 
 const busesHandler = (event, context, callback) => {
   buses.getBusTimesFromJake().then(result => {
-    callback(result);
+    callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    });
   });
 }
 
