@@ -16,7 +16,7 @@ const coalesce = <T>(...args: T[]) => {
 }
 
 const getBusTimes = async (): Promise<IDeparture[]> => {
-  const response = await fetch("/buses");
+  const response = await fetch("/.netlify/functions/buses");
   const json: IApiDeparture[] = await response.json();
   return json.map((departure) => {
     const {departureTimeEstimated, departureTimePlanned} = departure;

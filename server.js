@@ -1,3 +1,7 @@
+/**
+ * Server that acts like my netlify deploy :shrug:
+ */
+
 const Bundler = require("parcel-bundler");
 const express = require("express");
 const tfnsw = require('./server/TfNsw');
@@ -5,7 +9,7 @@ const tfnsw = require('./server/TfNsw');
 let bundler = new Bundler("index.html");
 let app = express();
 
-app.get('/buses', async (req, res) => {
+app.get('/.netlify/functions/buses', async (req, res) => {
   const response = await tfnsw.getBusTimesFromJake();
   res.send(response);
 });
