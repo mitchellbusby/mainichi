@@ -1,4 +1,3 @@
-
 require('isomorphic-fetch');
 
 const fetchUrl = "https://sydney-bus-departures.herokuapp.com/v1/departures?stop=204068";
@@ -16,6 +15,5 @@ const getBusTimesFromJake = async () => {
 }
 
 module.exports = {
-  getBusTimes,
   getBusTimesFromJake,
 }
