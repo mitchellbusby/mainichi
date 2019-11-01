@@ -4,6 +4,7 @@
 
 import { DateTime } from "luxon";
 
+// todo: move this to util, or see if lodash has somethign
 /**
  * Return the first truthy arg from a set of args.
  */
@@ -23,6 +24,7 @@ const getBusTimes = async (): Promise<IDeparture[]> => {
     const departureTimeToUse = coalesce(departureTimeEstimated, departureTimePlanned);
     const departureTime = convertToLuxonDateTime(departureTimeToUse);
     const departureInMinutes = departureTime.diffNow("minutes").minutes;
+    // todo: fill out the rest of this interface
     return {
       departureInMinutes: Math.floor(departureInMinutes),
     } as IDeparture;

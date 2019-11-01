@@ -1,5 +1,5 @@
 /**
- * Server that acts like my netlify deploy :shrug:
+ * Server that acts like my netlify deploy 🤷
  */
 
 const Bundler = require("parcel-bundler");

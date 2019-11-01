@@ -1,6 +1,6 @@
 import * as React from "react";
-import { TransitTimes } from "./TransitTimes";
-import { getBusTimes, IDeparture } from "./TfNswApi";
+import { TransitTimes } from "../TransitTimes";
+import { getBusTimes, IDeparture } from "../TfNswApi";
 
 enum WeatherStatus {
   Unknown = "unknown",
