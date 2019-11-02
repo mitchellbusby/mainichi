@@ -4,11 +4,10 @@ const getWeatherForecast = async (): Promise<IWeatherApiResponse> => {
   const response = await fetch("/.netlify/functions/weather");
 
   const json = await response.json();
-  const correctCase = camelcaseKeys(json);
+  const correctCase = camelcaseKeys(json, {deep: true});
 
   return correctCase as unknown as IWeatherApiResponse;
 }
-
 
 interface IWeatherApiResponse {
   data: IApiForecast[];

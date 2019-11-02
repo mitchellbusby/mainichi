@@ -1,5 +1,7 @@
 import * as React from "react";
+import "./Forecast.scss";
 import { IApiForecast } from "./WeatherApi";
+import { ForecastGraph } from "./ForecastGraph";
 
 interface IForecastProps {
   forecast: IApiForecast[]
@@ -20,8 +22,15 @@ const Forecast = ({
   }, WeatherStatus.Sunny);
 
   return (
-    <div className="h2">
-      The weather will be {weatherStatus === WeatherStatus.Sunny ? "fine. You're sweet 👌" : "potentially rainy. Better bring an umbrella just in case  ☔"}
+    <div className="c-forecast">
+      <div className="h2 mb3">
+        The weather will be {weatherStatus === WeatherStatus.Sunny ? "fine. You're sweet 👌" : "potentially rainy. Better bring an umbrella just in case  ☔"}
+      </div>
+      <div className="forecast-graph-container">
+        <ForecastGraph
+          forecast={forecast}
+        />
+      </div>
     </div>
   )
 }
