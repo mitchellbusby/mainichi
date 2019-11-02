@@ -1,7 +1,8 @@
 import * as React from "react";
 import { IDeparture } from "./TfNswApi";
 import {take} from "lodash";
-
+import classNames from "classnames";
+import "./TransitTimes.scss";
 
 interface ITransitTimeProps {
   stopName: string;
@@ -15,8 +16,18 @@ const TransitTimes = ({stopName, services}: ITransitTimeProps) => (
       {take(services, 3).map((service, idx) => (
         // Note: using idx isn't ideal but we're using it here in lieu
         // of a unique id
-        <div key={idx} className="mb1">
+        <div key={idx} className={classNames(
+          "c-transit-times__service mb1",
+          {
+            [`c-transit-times__service--${service.departureStatus}`]: service.departureStatus,
+          }
+        )}>
           {service.departureInMinutes} minutes
+          {
+            service.delta && (
+              <span>&nbsp;({service.delta})</span>
+            )
+          }
         </div>
       ))}
     </div>

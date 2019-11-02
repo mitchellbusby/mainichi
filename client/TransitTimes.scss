@@ -1,0 +1,17 @@
+.c-transit-times__service {
+  &--estimated {
+    color: grey;
+  }
+
+  &--on-time {
+    color: green;
+  }
+
+  &--late {
+    color: red;
+  }
+
+  &--early {
+    color: lightblue;
+  }
+}

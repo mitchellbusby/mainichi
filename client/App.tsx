@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./App.scss";
 import { TransitTimes } from "./TransitTimes";
 import { getBusTimes, IDeparture } from "./TfNswApi";
 import { getWeatherForecast, IApiForecast } from "./WeatherApi";
@@ -48,6 +49,7 @@ const App = () => {
               forecast={state.weatherForecast}
             />
             </div>
+            <hr className="m2" />
             <div className="buses">
               <TransitTimes
                 stopName="Catherine Street @ Moore St"
