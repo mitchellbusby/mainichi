@@ -49,7 +49,7 @@ const App = () => {
               forecast={state.weatherForecast}
             />
             </div>
-            <hr className="m2" />
+            <hr className="m2 my3" />
             <div className="buses">
               <TransitTimes
                 stopName="Catherine Street @ Moore St"
