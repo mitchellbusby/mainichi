@@ -4,6 +4,7 @@ import { TransitTimes } from "./TransitTimes";
 import { getBusTimes, IDeparture } from "./TfNswApi";
 import { getWeatherForecast, IApiForecast } from "./WeatherApi";
 import { Forecast } from "./Forecast";
+import { AppLoader } from "./AppLoader";
 
 interface IAppState {
   isLoading: boolean;
@@ -41,7 +42,9 @@ const App = () => {
       </div>
       {
         state.isLoading ? (
-          <div>Loading...</div>
+          <div className="app-loader-container">
+            <AppLoader />
+          </div>
         ) : (
           <React.Fragment>
             <div className="weather mb2">

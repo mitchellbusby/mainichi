@@ -2,3 +2,10 @@ hr {
   border-color: lightgrey;
   border-top: 0;
 }
+
+.app-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
