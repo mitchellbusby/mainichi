@@ -1,6 +1,6 @@
 require('isomorphic-fetch');
 
-const fetchUrl = "https://sydney-bus-departures.herokuapp.com/v1/departures?stop=204068";
+const fetchUrl = "https://sydney-bus-departures.herokuapp.com/v1/departures?stop=10101443";
 
 /**
  * Gets bus times for the 470 from my bus stop; makes use of a public API.

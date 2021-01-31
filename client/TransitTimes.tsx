@@ -13,7 +13,7 @@ const TransitTimes = ({stopName, services}: ITransitTimeProps) => (
   <div className="c-transit-times">
     <div className="c-transit-times__stop-name h3 bold mb2">{stopName}</div>
     <div className="c-transit-times__services">
-      {take(services, 3).map((service, idx) => (
+      {take(services, 5).map((service, idx) => (
         // Note: using idx isn't ideal but we're using it here in lieu
         // of a unique id
         <div key={idx} className={classNames(
@@ -27,6 +27,9 @@ const TransitTimes = ({stopName, services}: ITransitTimeProps) => (
             service.delta && (
               <span>&nbsp;({service.delta})</span>
             )
+          }
+          {
+            ` (${service.destination})`
           }
         </div>
       ))}

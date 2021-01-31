@@ -20,7 +20,7 @@ const getBusTimes = async (): Promise<IDeparture[]> => {
   const response = await fetch("/.netlify/functions/buses");
   const json: IApiDeparture[] = await response.json();
   return json.map((departure) => {
-    const {departureTimeEstimated, departureTimePlanned} = departure;
+    const {departureTimeEstimated, departureTimePlanned, destination} = departure;
     const departureTimeToUse = coalesce(departureTimeEstimated, departureTimePlanned);
     const departureTime = convertToLuxonDateTime(departureTimeToUse);
     const departureInMinutes = departureTime.diffNow("minutes").minutes;
@@ -30,6 +30,7 @@ const getBusTimes = async (): Promise<IDeparture[]> => {
       departureInMinutes: Math.floor(departureInMinutes),
       departureStatus,
       delta,
+      destination,
     } as IDeparture;
   });
 }
@@ -87,6 +88,7 @@ interface IDeparture {
   departureTimeEstimated: string;
   departureInMinutes: number;
   departureStatus: DepartureStatus,
+  destination: string;
   delta?: string;
 }
 

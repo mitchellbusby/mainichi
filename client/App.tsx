@@ -112,7 +112,7 @@ const App = () => {
               {
                 departureStatus === RequestStatus.Success ? (
                   <TransitTimes
-                    stopName="Catherine Street @ Moore St"
+                    stopName="St. Peters Station"
                     services={departures}
                   />                  
                 ) : (
